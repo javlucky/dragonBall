@@ -1,0 +1,32 @@
+{
+  "name": "dragonball",
+  "version": "1.0.0",
+  "description": "SPA para busquedas relacionadas al anime",
+  "main": "index.js",
+  "scripts": {
+    "start": "nodemon index.js",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/javlucky/dragonBall.git"
+  },
+  "author": "Javier Rodriguez",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/javlucky/dragonBall/issues"
+  },
+  "homepage": "https://github.com/javlucky/dragonBall#readme",
+  "dependencies": {
+    "body-parser": "^1.20.2",
+    "cookie-parser": "^1.4.6",
+    "dotenv": "^16.3.2",
+    "express": "^4.18.2",
+    "morgan": "^1.10.0",
+    "node": "^21.6.0",
+    "nodemon": "^3.0.3",
+    "path": "^0.12.7",
+    "pg": "^8.11.3",
+    "sequelize": "^6.35.2"
+  }
+}
