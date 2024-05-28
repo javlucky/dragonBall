@@ -6,7 +6,7 @@ const router = Router();
 
 router.get('/', charactersHandlers);
 router.get('/:id', characterHandler);
-router.post('/create', validate, createCharacterHandler);
+router.post('/create', createCharacterHandler);
 router.put('/modif', updateCharacterHandler);
 router.delete('/:id', deleteCharacterHandler);
 

@@ -2,7 +2,9 @@ const express = require('express');
 const cookieParser = require('cookie-parser');
 const bodyParser = require('body-parser');
 const morgan = require('morgan');
-const router = require('./routes');
+const routes = require('./routes/index');
+const cors = require('cors');
+//const router = require('./routes');
 
 require('./db');
 
@@ -14,6 +16,11 @@ server.use(bodyParser.urlencoded({ extended: true, limit: '50mb'}));
 server.use(bodyParser.json({ limit: '50mb'}));
 server.use(cookieParser());
 server.use(morgan('dev'));
+server.use(
+    cors({
+      origin: "*",
+    })
+  );
 server.use((req, res, next) => {
     res.header('Access-Control-Allow-Origin', 'http://localhost:3000');
     res.header('Access-Control-Allow-Credentials', 'true');
@@ -22,7 +29,7 @@ server.use((req, res, next) => {
     next();    
 });
 
-server.use(router);
+server.use('/', routes);
 
 server.use((err, req, res, next) => {
     const status = err.status || 500;

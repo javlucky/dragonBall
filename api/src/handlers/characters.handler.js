@@ -1,14 +1,23 @@
-const { createCharacter, getCharacterById, getAllCharacters, deleteCharacter, searchCharacterByName } = require('../controllers/characters.controller');
+const { createCharacter, getCharacterById, getAllCharacters, deleteCharacter, searchCharacterByName, charactersByNameInApi } = require('../controllers/characters.controller');
 const { Character, Planet } = require('../db');
 
 const charactersHandlers = async (req, res) => {
     const { name } = req.query;
     try {
-        const allCharacters = name ? await searchCharacterByName(name) : await getAllCharacters();
-        console.log('allCharacters:', allCharacters);
+        const allCharacters = name ? await charactersByNameInApi(name) : await getAllCharacters();
+        //console.log('allCharacters:', allCharacters);
         res.status(200).json(allCharacters);
     } catch (error) {
-        res.status(400).json({ error: error.message});
+        // Detalles adicionales sobre el error para mejor diagnóstico
+        if (error.response) {
+            console.error('Error en la respuesta de la API:', error.response.data);
+        } else if (error.request) {
+            console.error('No se recibió respuesta del servidor:', error.request);
+        } else {
+            console.error('Error en la configuración de la solicitud:', error.message);
+        }
+        throw error;
+        //res.status(400).json({ error: error.message});
     }
 };
 
